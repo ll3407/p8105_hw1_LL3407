@@ -1,0 +1,39 @@
+---
+title: "p8105_hw1_LL3407"
+output: github_document
+date: "2022-09-18"
+---
+# Problem 1
+
+```{r setup, eval=TRUE, include=FALSE}
+data("penguins",package="palmerpenguins")
+library(tidyverse)
+```
+## Discription of _penguins_
+* The dataset _penguins_ contains 8 variables, inlcuding species, island, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g, sex, and year.  
+* There are 344 observations in _penguins_.  
+* The mean flipper length is `r mean(pull(penguins,flipper_length_mm))`.
+
+## Scatterplot of flipper length vs bill length
+```{r}
+ggplot(penguins, aes(x=bill_length_mm, y=flipper_length_mm, color=species))+geom_point()
+
+ggsave("scplot_bill+flipper.pdf")
+```
+
+# Problem 2  
+## Create a dataframe
+```{r}
+dataframe=tibble(
+  var_norm=rnorm(n=10),
+  var_lg=var_norm>0,
+  var_char=c(length(10)),
+  var_fc=factor(c("1","2","3"),levels=c("1","2","3"),length(10))
+  )
+```
+
+
+
+
+
+
