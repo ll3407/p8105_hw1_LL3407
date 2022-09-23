@@ -5,14 +5,15 @@ date: "2022-09-18"
 ---
 # Problem 1
 
-```{r setup, eval=TRUE, include=FALSE}
+```{r, echo=FALSE}
 data("penguins",package="palmerpenguins")
 library(tidyverse)
+library(dplyr)
 ```
 ## Discription of _penguins_
 * The dataset _penguins_ contains 8 variables, inlcuding species, island, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g, sex, and year.  
 * There are 344 observations in _penguins_.  
-* The mean flipper length is `r mean(pull(penguins,flipper_length_mm))`.
+* The mean flipper length is `r mean(pull(penguins, flipper_length_mm), na.rm = TRUE)`.
 
 ## Scatterplot of flipper length vs bill length
 ```{r}
@@ -23,16 +24,31 @@ ggsave("scplot_bill+flipper.pdf")
 
 # Problem 2  
 ## Create a dataframe
-```{r}
+```{r, echo=FALSE}
 dataframe=tibble(
   var_norm=rnorm(n=10),
   var_lg=var_norm>0,
   var_char=c(length(10)),
-  var_fc=factor(c("1","2","3"),levels=c("1","2","3"),length(10))
+  var_fc=factor(sample(c(1,2,3),10,replace=T),levels=c("1","2","3"))
   )
+
 ```
 
+* The mean of random sample is `r mean(pull(dataframe, var_norm))`.  
+* The mean of logic vector is `r mean(pull(dataframe, var_lg))`.
+* The mean of character vector is `r mean(pull(dataframe, var_char))`.
+* The mean of factor vector is `r mean(pull(dataframe, var_fc))`.
 
+The code of mean works for random sample, but not for logic vector, character vector, or factor vector despite the mean values from logic vector and character vectors.
+
+
+## Convert logic, character and factor variables to numeric varaibles.
+
+```{r, eval=FALSE}
+as.numeric(pull(dataframe,var_lg))
+as.numeric(pull(dataframe,var_char))
+as.numeric(pull(dataframe,var_fc))
+```
 
 
 
