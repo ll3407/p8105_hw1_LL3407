@@ -39,7 +39,7 @@ dataframe=tibble(
 * The mean of character vector is `r mean(pull(dataframe, var_char))`.
 * The mean of factor vector is `r mean(pull(dataframe, var_fc))`.
 
-The code of mean works for random sample, but not for logic vector, character vector, or factor vector despite the mean values from logic vector and character vectors.
+The code of mean works for random sample, logic vector, and character vector, but not for factor vector.
 
 
 ## Convert logic, character and factor variables to numeric varaibles.
@@ -50,6 +50,6 @@ as.numeric(pull(dataframe,var_char))
 as.numeric(pull(dataframe,var_fc))
 ```
 
-
+* The logic variables are the number of "0" or "1", and the character variables are the number of "1" after converting to the numeric variables. The number "0" or "1" can be recognized by computer, so the mean code works for those two kinds of variable. However, the factor variables are from "1" to "3" after converting to numeric variables. Number "2" or "3" cannot be recognized by computer, so the mean code doesn't work for factor variables. 
 
 
